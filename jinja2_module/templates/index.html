@@ -1,0 +1,43 @@
+<p>python: {{ course.python}}</p>
+<p>java: {{ course.java }} </p>
+<p>bigdata: {{ course.bigdata }} </p>
+<p>teacher : {{ course.teacher }} </p>
+<p>tags: {{ course.tags }} </p>
+{% if course.is_private %}
+<p> course {{ course.name }} is ptivate</p>
+{% elif course.is_member_course %}
+<p> coures {{ coures.name }} is member course </p>
+{% else %}
+<p> course {{ course.name }} is nomal course </p>
+{% endif %}
+{% for tag in course.tags %}
+<span> {{ tag }} </span>
+{% endfor %}
+{% if course.is_unique %}
+<p> course is unique</p>
+{% elif course.has_tag %}
+{% for tag in course.tags %}
+<span> {{ tag }} </span>
+{% endfor%}
+{% else %}
+<p> course is not unique and it don\'t has tag</p>
+{% endif %}
+{% from 'macro.html' import course_test%}
+<div> {{ course_test(course) }} </div>
+{% from 'macro.html' import course_tag %}
+<div> {{ course_tag(course) }} </div>
+
+{{ '=' * 50 }}
+{% extends "base.html"%}
+{% from 'macro.html' import course_tag %}
+{% block header %}
+<h1> shiyanlou </h1>
+{% endblock %}
+{% block content %}
+{{ course_tag(course) }}
+{% endblock %}
+{% block footer %}
+<div> 
+    <a href="{{ url_for('courses', course_name='python') }}">courses</a>
+</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% macro course_test(course, type="bootstrap") %}
+<div>
+    <p> type: {{ type }} </p>
+    <p> name: {{ course.name }} </p>
+    <p> is_private: {{ course.is_private }} </p>
+    <p> user_count: {{ course.user_count }} </p>
+    <p> teacher: {{ course.teacher }} </p>
+</div>
+{% endmacro %}
+{% macro course_tag(course, type="bootstrap") %}
+<h1> Hello, Macro! </h1>
+{% endmacro %}
+
